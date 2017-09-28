@@ -23,6 +23,7 @@ using std::setprecision;
     }                                                               \
 }
 
+<<<<<<< HEAD
 __global__ void rgb2grayCudaKernel(unsigned char *inputImage, unsigned char *grayImage, const int width, const int height)
 {
 
@@ -83,6 +84,19 @@ void rgb2grayCuda(unsigned char *inputImage, unsigned char *grayImage_gpu, const
 }
 
 
+=======
+/*
+__global__ void rgb2grayCudaKernel
+{
+}
+*/
+
+/*
+void rgb2grayCuda
+{
+}
+*/
+>>>>>>> 846a608ae44b9981bd2d1225a3ffa27cdbef206a
 
 void rgb2gray(unsigned char *inputImage, unsigned char *grayImage, const int width, const int height) 
 {

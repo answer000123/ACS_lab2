@@ -3,9 +3,12 @@
 #include <iostream>
 #include <iomanip>
 #include <cstring>
+<<<<<<< HEAD
 #include <stdio.h>
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
+=======
+>>>>>>> 846a608ae44b9981bd2d1225a3ffa27cdbef206a
 
 using cimg_library::CImg;
 using LOFAR::NSTimer;
@@ -17,7 +20,11 @@ using std::setprecision;
 
 // Constants
 const bool displayImages = false;
+<<<<<<< HEAD
 const bool saveAllImages = true;
+=======
+const bool saveAllImages = false;
+>>>>>>> 846a608ae44b9981bd2d1225a3ffa27cdbef206a
 const unsigned int HISTOGRAM_SIZE = 256;
 const unsigned int BAR_WIDTH = 4;
 const unsigned int CONTRAST_THRESHOLD = 80;
@@ -39,8 +46,11 @@ extern void contrast1D(unsigned char *grayImage, const int width, const int heig
 extern void triangularSmooth(unsigned char *grayImage, unsigned char *smoothImage, const int width, const int height, const float *filter);
 //extern void triangularSmoothCuda
 
+<<<<<<< HEAD
 extern void rgb2grayCuda(unsigned char *inputImage, unsigned char *grayImage, const int width, const int height);
 
+=======
+>>>>>>> 846a608ae44b9981bd2d1225a3ffa27cdbef206a
 
 int main(int argc, char *argv[]) 
 {
@@ -59,6 +69,7 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
+<<<<<<< HEAD
 	//allocate memory on Host 
 	//unsigned char *buffer = 0;
 	//buffer = (unsigned char*)malloc(inputImage.width()*inputImage.height()*sizeof(unsigned char));
@@ -99,15 +110,27 @@ int main(int argc, char *argv[])
 	*/
 	//CImg< unsigned char > grayImage_gpu = CImg< unsigned char >(buffer[0])
 
+=======
+	// Convert the input image to grayscale 
+	CImg< unsigned char > grayImage = CImg< unsigned char >(inputImage.width(), inputImage.height(), 1, 1);
+
+	rgb2gray(inputImage.data(), grayImage.data(), inputImage.width(), inputImage.height());
+	//rgb2grayCuda
+>>>>>>> 846a608ae44b9981bd2d1225a3ffa27cdbef206a
 
 	if ( displayImages ) {
 		grayImage.display("Grayscale Image");
 	}
 	if ( saveAllImages ) {
 		grayImage.save("./grayscale.bmp");
+<<<<<<< HEAD
 		grayImage_gpu.save("./grayImage_gpu.bmp");
 	}
 
+=======
+	}
+	
+>>>>>>> 846a608ae44b9981bd2d1225a3ffa27cdbef206a
 	// Compute 1D histogram
 	CImg< unsigned char > histogramImage = CImg< unsigned char >(BAR_WIDTH * HISTOGRAM_SIZE, HISTOGRAM_SIZE, 1, 1);
 	unsigned int *histogram = new unsigned int [HISTOGRAM_SIZE];
@@ -148,7 +171,10 @@ int main(int argc, char *argv[])
 	if ( saveAllImages ) {
 		smoothImage.save("./smooth.bmp");
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 846a608ae44b9981bd2d1225a3ffa27cdbef206a
 
 	return 0;
 }
