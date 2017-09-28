@@ -58,29 +58,6 @@ int main(int argc, char *argv[])
 		cerr << "The input must be a color image." << endl;
 		return 1;
 	}
-
-	//allocate memory on Host 
-	//unsigned char *buffer = 0;
-	//buffer = (unsigned char*)malloc(inputImage.width()*inputImage.height()*sizeof(unsigned char));
-	
-	//allocation on the Device
-	/*
-	if(cudaMalloc((void**)&d_input,inputImage.width()*inputImage.height()*sizeof(unsigned char)*3) != cudaSuccess){
-		cout<<"error on allocate device memory"<<endl;
-		exit(-1);
-	};
-	if(cudaMalloc((void**)&d_output,inputImage.width()*inputImage.height()*sizeof(unsigned char))!= cudaSuccess){
-		printf("error on allocate device memory\n");
-		exit(-1);
-	};
-
-	//memory copy from Host to Device 
-	if(cudaMemcpy(d_input,inputImage.data(),inputImage.width()*inputImage.height()*sizeof(unsigned char)*3,cudaMemcpyHostToDevice)
-		!= cudaSuccess){
-		printf("error on memory transfer\n");
-		exit(-2);
-	}
-	*/
 	
 	// Convert the input image to grayscale 
 	CImg< unsigned char > grayImage = CImg< unsigned char >(inputImage.width(), inputImage.height(), 1, 1);
@@ -88,16 +65,6 @@ int main(int argc, char *argv[])
 
 	rgb2gray(inputImage.data(), grayImage.data(), inputImage.width(), inputImage.height());
 	rgb2grayCuda(inputImage.data(),grayImage_gpu,inputImage.width(), inputImage.height());
-
-	//memory copy from Device to Host
-	/*
-	if(cudaMemcpy(grayImage_gpu,d_output,inputImage.width()*inputImage.height()*sizeof(unsigned char),cudaMemcpyDeviceToHost)
-		!= cudaSuccess){
-		printf("error on memory transfer\n");
-		exit(-3);
-	}
-	*/
-	//CImg< unsigned char > grayImage_gpu = CImg< unsigned char >(buffer[0])
 
 
 	if ( displayImages ) {
