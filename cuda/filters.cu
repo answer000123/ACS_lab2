@@ -83,17 +83,6 @@ void rgb2grayCuda(unsigned char *inputImage, unsigned char *grayImage_gpu, const
 }
 
 
-/*
-__global__ void rgb2grayCudaKernel
-{
-}
-*/
-
-/*
-void rgb2grayCuda
-{
-}
-*/
 
 void rgb2gray(unsigned char *inputImage, unsigned char *grayImage, const int width, const int height) 
 {
